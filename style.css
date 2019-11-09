@@ -1,0 +1,70 @@
+.ui.container > h1 {
+  font-size: 3em;
+  text-align: center;
+  font-weight: normal;
+  margin-bottom: 2em;
+  margin-top: 1em;
+}
+
+.ui.segment h2, .ui.segment p {
+  color: #222222;
+  padding: 20px 0;
+}
+
+.ui.segment {
+  padding: 15px;
+}
+
+.ui.segment.gifs h2::before {
+  content: "#" attr(data-id);
+  color: #888888;
+  font-size: 15px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.ui.segment img {
+  max-width: 100%;
+}
+
+.pages {
+  text-align: center;
+  padding-top: 20px;
+}
+
+em {
+  padding: 40px 10px;
+}
+
+.loaderdiv {
+  min-height: 200px;
+}
+
+@media only screen and (min-width: 1145px) {
+  .fixed.menu, .iframereplace {
+    display: none !important;
+  }
+}
+
+@media only screen and (max-width: 1145px) {
+  .ui.container > h1 {
+    margin-bottom: 1em;
+    margin-top: 2em;
+  }
+  iframe {
+    display: none;
+  }
+}
+
+a[href="/propose.html"] {
+  animation-name: example;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: 2s;
+}
+
+/* Standard syntax */
+@keyframes example {
+  from {color: red; font-weight: bold;}
+  to {color: rgb(0, 217, 255);}
+}

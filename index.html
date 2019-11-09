@@ -1,0 +1,109 @@
+<html>
+  <head>
+    <meta charset="utf8">
+    <title>Prenez la P.O.S.E.</title>
+
+    <meta charset="utf-8">
+    <meta name="description" content="Quand on prend la POSE ..." />
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <meta name="robots" content="noindex"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://script.google.com/macros/s/AKfycbwGJvCirCcMUYgTXRktFx5nx5rACK0jmB7ONktmV0kYa3NZ40w/exec?action=rss"/>
+
+  </head>
+  <body>
+    <div id="app">
+
+      <div class="ui fixed menu tablet mobile only ">
+        <a class="item active" href="#">
+          GIFs
+        </a>
+        <a class="item" href="/propose.html">
+          Propose tes GIFs !
+        </a>
+      </div>
+
+      <div class="ui container">
+        <h1>Prenez la P.O.S.E. </h1>
+        <p>Sois sûr d'avoir lu au moins une fois les <a href="/regles.html">règles de modération</a>.<br/>
+          Liberté d'expression !<br/>
+          ++</p>
+
+        <div class="ui stackable grid mobile reversed">
+          <div class="twelve wide stretched column">
+            <div class="ui placeholder segment" v-if="error" v-cloak>
+              <div class="ui icon header">
+                <i class="exclamation triangle icon"></i>
+                Impossible de récupérer les GIFs.
+              </div>
+              <a href="/" class="ui primary button">Recharger la page</a>
+            </div>
+            <div class="ui segment loaderdiv" v-else-if="gifs.length == 0">
+              <div class="ui active inverted dimmer">
+                <div class="ui text loader">Chargement des GIFs</div>
+              </div>
+            </div>
+            <div class="gifs ui vertical segment" v-for="gif in gifs" :key="gif.id" v-cloak>
+              <h2 v-bind:data-id="gif.id">{{gif.title}}</h2>
+              <img :src="gif.url" alt="gif"/>
+              <p>{{gif.author}}</p>
+            </div>
+            <div class="pages" v-if="gifs.length > 0">
+              <div class="ui pagination menu">
+                <a class="item" :class="{disabled: !previousPage}" :href="pageURL(previousPage)">
+                «
+                </a>
+                <div class="item" v-cloak>
+                  Page {{page}} / {{lastPage}}
+                </div>
+                <a class="item" :class="{disabled: !nextPage}" :href="pageURL(nextPage)">
+                  »
+                </a>
+              </div>
+            </div>
+            <div class="ui vertical segment" v-else-if="gifs.length > 0">
+              <div class="ui active inverted dimmer">
+                <div class="ui text loader">Chargement des GIFs</div>
+              </div>
+            </div>
+          </div>
+          <nav class="computer only four wide column">
+            <div class="ui vertical fluid right tabular menu">
+              <a class="item active" href="#">
+                GIFs
+              </a>
+              <a class="item" href="/regles.html">
+                Règles de modération
+              </a>
+              <a class="item" href="/propose.html">
+                Propose tes GIFs !
+              </a>
+            </div>
+            <div class="pages">
+              <div class="ui pagination menu">
+                <a class="item" :class="{disabled: !previousPage}" :href="pageURL(previousPage)">
+                «
+                </a>
+                <div class="item" v-cloak>
+                  Page {{page}} / {{lastPage}}
+                </div>
+                <a class="item" :class="{disabled: !nextPage}" :href="pageURL(nextPage)">
+                  »
+                </a>
+              </div>
+            </div>
+          </nav>
+        </div>
+    </div>
+
+    </div>    
+
+  <script src="https://unpkg.com/vue@2.6.10/dist/vue.min.js"></script>
+  <script src="https://unpkg.com/axios@0.19.0/dist/axios.min.js"></script>
+  <script src="script.js"></script>
+  </body>
+</html>
